@@ -149,12 +149,6 @@ dnl if ! test -d "$MPI_LIB_PATH" ; then
 dnl    AC_MSG_ERROR([Can't determine MPI_LIB_PATH])
 dnl fi
 
-MPI_INCLUDE_PATH="$MPI_ROOT_PATH/include"
-if ! test -d "$MPI_INCLUDE_PATH" ; then
-   AC_MSG_ERROR([Can't determine MPI_INCLUDE_PATH])
-fi
-
-
 
 AC_LANG_CASE([C], [
         AC_MSG_CHECKING([for mpi.h])
