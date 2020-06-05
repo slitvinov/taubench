@@ -1,0 +1,101 @@
+#!/bin/sh
+#
+
+#     generic IPACS benchmark submission script
+#
+#
+# SYNOPSIS
+#     submit -bm benchmark [-h] [-v] [-t wall_time [hh:mm:ss]] [-m memory [mb]]
+#
+#
+
+usage () {
+command=`basename $0`
+cat <<EOF
+Usage: $command -bm benchmark [-h] [-v] [-t wall_time [hh:mm:ss]] [-m memory [mb]]
+       Generic control script for the IPACS benchmark submission."
+       Environment variables: 
+       NODE_NUM_PROCS - number of processors/node
+       BATCH_SYSTEM   - see subdirectory SUPPORTED_BATCH_SYSTEMS for supported versions
+       PROC_ARRAY     - number of used processors, e.g "2 4 8 16"
+       QSUB           - qsub command (optional)
+       QCONF          - qstat command (optional)
+       QUEUE          - batch queue name (optional)
+
+       Example:
+       NODE_NUM_PROCS=2 BATCH_SYSTEM=PBS PROC_ARRAY="2 4" ./submit -bm TauBench
+EOF
+exit 0
+
+}
+
+get_node_num () {
+
+    nodes=`expr $np / $NODE_NUM_PROCS`
+    tn=`expr $nodes \* $NODE_NUM_PROCS`
+    if test $tn -lt $np; then
+	nodes=`echo $nodes+1 | bc`
+    fi
+}
+
+patch_script () {
+    
+# Patch all CF Variables
+    cat $sjob | sed -e "s/CF_TIME/$wtime/g" -e "s/CF_TCPU/$np/g" -e "s/CF_NCPU/$NODE_NUM_PROCS/g" -e "s/CF_NODE/$nodes/g" -e "s/CF_PE/$QUEUE/g"  -e "s/CF_BENCH/$benchmark/g" > $tjob
+
+}
+
+while [ $# -ge 1 ]; do
+     case $1 in
+         -bm             ) shift; benchmark=$1;;
+         -t              ) shift; wtime=$1;;
+         -m              ) shift; memory=$1;;
+         -v              ) verbose="1";;
+         -h              ) usage; exit 0 ;;
+         *               ) usage; exit 1 ;;
+     esac
+     shift
+done
+
+if [ -z "$benchmark" ];then usage;fi;
+
+# Configure
+if [ -z "$NODE_NUM_PROCS" ];then NODE_NUM_PROCS="@NODE_NUM_PROCS@"; fi
+if [ -z "$BATCH_SYSTEM" ];then BATCH_SYSTEM="@BATCH_SYSTEM@"; fi
+if [ -z "$PROC_ARRAY" ];then PROC_ARRAY="@PROC_ARRAY@"; fi;
+if [ -z "$QSUB" ];then QSUB="@QSUB@"; fi
+if [ -z "$QCONF" ];then QCONF="@QCONF@"; fi;
+if [ -z "$QUEUE" ];then QUEUE="@QUEUE@"; fi;
+
+# Error
+if [ -z "$NODE_NUM_PROCS" ];then usage;fi;
+if [ -z "$BATCH_SYSTEM" ];then usage;fi;
+
+# Batch system properties
+. "@CONFIGDIR@/SUPPORTED_BATCH_SYSTEMS/$BATCH_SYSTEM"
+   
+# Defaults
+if test x"$QUEUE" = "x"; then find_queue; fi
+if test x"$QSUB" = "x"; then QSUB="/bin/sh"; fi;
+if test x"$PROC_ARRAY" = "x" ;then PROC_ARRAY="2"; fi;
+
+if [ -z "$t" ];then wtime="2:00:00";fi;
+if [ -z "$m" ];then memory="1024";fi;
+
+
+for np in $PROC_ARRAY; do
+
+    sjob="job.$benchmark"
+    tjob="job.$benchmark.$np"
+
+    get_node_num
+    patch_script
+    patch_submission
+
+    cd @CONFIGDIR@
+    if test x"$verbose" = "x1"; then echo "$JSUB $tjob"; fi;
+    $JSUB $tjob
+
+done
+
+  

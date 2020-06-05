@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# christian.simmendinger@t-systems.com
+#
+# SYNOPSIS
+#     job.TauBench
+#
+#PBS -l walltime=2:00:00
+#PBS -l nodes=2
+#PBS -N TauBench
+#
+#
+#
+np=2
+if test x"/home/hww/hwwadm4/ipacs/check/TauBench-1.1" != x"/home/hww/hwwadm4/ipacs/check/TauBench-1.1"; then 
+    cp /home/hww/hwwadm4/ipacs/check/TauBench-1.1/TauBench /home/hww/hwwadm4/ipacs/check/TauBench-1.1
+fi
+cd /home/hww/hwwadm4/ipacs/check/TauBench-1.1
+/home/hww/hwwadm4/ipacs/check/TauBench-1.1/mpirun -np $np ./TauBench >& TauBench.p$np
+cp TauBench.p$np /home/hww/hwwadm4/ipacs/check/TauBench-1.1/RESULTS
+rm -f TauBench.p$np

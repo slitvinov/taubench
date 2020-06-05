@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+
+THIS_VERSION="PBS_PRO"
+
+check_version () {
+
+    if test x"$QSUB_BASENAME" = "xqsub"; then
+	pbsnodes="$BATCH_BIN_PATH/pbsnodes"
+	if test -f "$pbsnodes" ; then
+	    nqs2pbs="$BATCH_BIN_PATH/nqs2pbs"
+	    if test -f "$nqs2pbs" ; then
+		Altair=`grep Altair $nqs2pbs`
+		if test x"$Altair" != "x"; then
+		    echo "PBS_PRO"
+		fi
+	    fi
+	fi
+    fi
+
+}
+
+set_version () {
+
+    QSUB_BASENAME="qsub"
+    if [ -z "$QCONF" ];then QCONF="UNKNOWN"; fi
+    if [ -z "$BL1" ];then BL1="PBS -l walltime=CF_TIME"; fi
+    if [ -z "$BL2" ];then BL2="PBS -l nodes=CF_NODE"; fi
+    if [ -z "$BL3" ];then BL3="PBS -N CF_BENCH"; fi
+    if [ -z "$BL4" ];then BL4=""; fi
+    if [ -z "$BL5" ];then BL5=""; fi
+    if [ -z "$BL6" ];then BL6=""; fi
+    
+}
+
+get_properties () {
+    NODEFILE="$PBS_NODEFILE"
+}
+
+patch_submission () {
+    JSUB="$QSUB"
+    if test x"$QUEUE" != "x"; then JSUB="$QSUB -q $QUEUE"; fi;
+}
+
+find_queue () {
+    DUMMY=""
+}
+

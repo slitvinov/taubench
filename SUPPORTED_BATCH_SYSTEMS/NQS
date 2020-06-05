@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+
+THIS_VERSION="NQS"
+
+check_version () {
+
+    if test x"$QSUB_BASENAME" = "xqsub"; then
+	qwait="$BATCH_BIN_PATH/qwait"
+	qresub="$BATCH_BIN_PATH/qresub"
+	pbsnodes="$BATCH_BIN_PATH/pbsnodes"
+	if test ! -f "$qwait" && test ! -f "$qresub" && test ! -f "$pbsnodes" ; then
+	    echo "NQS"
+	fi
+    fi
+
+}
+
+set_version () {
+
+    QSUB_BASENAME="qsub"
+    if [ -z "$QCONF" ];then QCONF="UNKNOWN"; fi
+    if [ -z "$BL1" ];then BL1="QSUB -l mpp_p=CF_TCPU"; fi
+    if [ -z "$BL2" ];then BL2="QSUB -l mpp_t=CF_TIME"; fi
+    if [ -z "$BL3" ];then BL3="QSUB -r CF_BENCH"; fi
+    if [ -z "$BL4" ];then BL4=""; fi
+    if [ -z "$BL5" ];then BL5=""; fi
+    if [ -z "$BL6" ];then BL6=""; fi
+
+}
+
+get_properties () {
+    NODEFILE="NONE"
+}
+
+patch_submission () {
+    JSUB="$QSUB"
+}
+
+find_queue () {
+
+    generic_qname="parallel multi mpi mpp mpich lam para par batch default"
+    IFS="
+"
+    stat=`$QCONF -Q -r`
+    for i in $stat; do
+	IFS=" "
+	for j in $generic_qname; do
+	    if test x"$QUEUE" = "x"; then 
+		check=`echo $i | grep $j`
+		if test $? -eq 0; then
+		    QUEUE=`echo $i | sed "s/.*\(\W*$j\W*\) *.*/\1/"`
+		fi
+	    fi
+	done
+    done       
+    if test x"$QUEUE" = "x"; then
+	echo "ERROR: Can't find routing QUEUE"
+	exit 1
+    fi
+
+}

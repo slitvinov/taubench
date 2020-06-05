@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+
+THIS_VERSION="NONE"
+
+check_version () {
+
+    if test x"$QSUB_BASENAME" = "xnocommand"; then
+	echo "NONE"
+    fi
+}
+
+set_version () {
+
+    QSUB_BASENAME="/bin/sh"
+    if [ -z "$QCONF" ];then QCONF="UNKNOWN"; fi
+    if [ -z "$BL1" ];then BL1=""; fi
+    if [ -z "$BL2" ];then BL2=""; fi
+    if [ -z "$BL3" ];then BL3=""; fi
+    if [ -z "$BL4" ];then BL4=""; fi
+    if [ -z "$BL5" ];then BL5=""; fi
+    if [ -z "$BL6" ];then BL6=""; fi
+
+}
+
+get_properties () {
+    NODEFILE="$HOME/.nodefile.localhost"
+    echo "127.0.0.1" > $NODEFILE
+}
+
+patch_submission () {
+    JSUB="$QSUB"
+}
+
+find_queue () {
+    DUMMY=""
+}
+

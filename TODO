@@ -1,0 +1,2 @@
+Client: -> SUBMIT (POLL)
+mpirun -np # hostname

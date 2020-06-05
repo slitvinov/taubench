@@ -1,0 +1,49 @@
+AC_INIT(TauBench,1.1,christian.simmendinger@t-systems.com)
+AM_INIT_AUTOMAKE(TauBench,1.1)
+
+AC_CANONICAL_HOST
+
+# Checks for programs.
+# AC_PROG_PERL
+# AC_PROG_GNUPLOT
+# AC_PROG_RSH
+# AC_PROG_SSH
+
+# MPI Stuff
+AC_MPI
+AC_MPI_VERSION
+
+# Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS([float.h malloc.h stddef.h stdlib.h string.h sys/time.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_HEADER_TIME
+
+# Checks for library functions.
+# AC_FUNC_MALLOC
+AC_CHECK_FUNCS([gettimeofday tanh])
+
+# Checks for libraries.
+AC_CHECK_LIB(m, tanh)
+
+# FS Stuff
+AC_FS
+ 
+# BATCH Stuff
+AC_BATCH
+
+AC_NODE_NUM_PROCS
+AC_QUEUE
+AC_PA
+
+AC_PROG_INSTALL
+
+AC_OUTPUT([
+Makefile mpirun job.TauBench submit
+],[
+chmod +x mpirun job.TauBench submit
+])
+
+

@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+
+THIS_VERSION="LSF"
+
+check_version () {
+
+    if test x"$QSUB_BASENAME" = "xbsub"; then
+	echo "LSF"
+    fi
+}
+
+set_version () {
+
+    QSUB_BASENAME="bsub"
+    if [ -z "$QCONF" ];then QCONF="UNKNOWN"; fi
+    if [ -z "$BL1" ];then BL1="BSUB -n CF_TCPU"; fi
+    if [ -z "$BL2" ];then BL2="BSUB -J CF_BENCH"; fi
+    if [ -z "$BL3" ];then BL3="BSUB -W CF_TIME"; fi
+    if [ -z "$BL4" ];then BL4=""; fi
+    if [ -z "$BL5" ];then BL5=""; fi
+    if [ -z "$BL6" ];then BL6=""; fi
+
+}
+
+get_properties () {
+    NODEFILE="$LSB_HOSTS"
+}
+
+patch_submission () {
+    JSUB="$QSUB"
+}
+
+find_queue () {
+    DUMMY=""
+}
+

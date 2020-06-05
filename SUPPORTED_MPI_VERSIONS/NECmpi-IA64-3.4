@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+
+THIS_VERSION="NECmpi-IA64-3.4"
+
+usage () {
+
+cat <<EOF
+Usage: $THIS_VERSION -np processors progname [-h]
+       mpirun wrapper.
+       Environment variables: MACHINEFILE, MPI_BIN_DIR, NODEFILE, NODE_NUM_PROCS
+EOF
+exit 0
+
+}
+
+
+build_machinefile() {
+    DUMMY=""
+}
+
+run () {
+
+    if [ -z "$MPI_BIN_DIR" ];then usage; fi;
+    if [ -z "$NODEFILE" ];then usage; fi;
+    if [ -z "$NODE_NUM_PROCS" ];then usage; fi;
+    if [ -z "$MACHINEFILE" ];then MACHINEFILE="$HOME/.machinefile"; fi;
+    
+# mpirun
+    vendor_mpirun="mpirun";
+# std command    
+    command="$vendor_mpirun -np $np $command"
+    exec $command
+
+}
+
+
+check_version () {
+
+    resn=`"$MPICC" -V 2>&1 | grep 'NEC Corporation'`
+    if test $? -eq 0; then
+	resi=`"$MPICC" -V 2>&1 | grep 'Intel Corporation'`
+	if test $? -eq 0; then
+	    device="IA64"
+	    ver=`"$MPICC" -V 2>&1 | grep Revision | sed 's/.*Revision \([0-9.]*\).*/\1/g'`
+	fi
+    fi	
+    MPI_VERSION="NECmpi-"$device"-"$ver
+    if test x"$MPI_VERSION" = x"$THIS_VERSION"; then
+	echo $THIS_VERSION
+    fi
+
+}
+
+#
+# Handle user arguments
+#
+basecmd=`basename $0`
+if test x"$basecmd" = x"$THIS_VERSION"; then 
+    command=""
+    while [ $# -ge 1 ]; do
+	case $1 in
+	    -h              ) usage; exit 0 ;;
+            -np             ) shift; np=$1;;
+            *               ) command="$command $1";;
+	esac
+	shift
+    done
+fi
+if test x"$basecmd" != "xconfigure"; then 
+    run
+fi

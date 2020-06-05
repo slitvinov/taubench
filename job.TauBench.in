@@ -1,0 +1,21 @@
+#!/bin/sh
+#
+# christian.simmendinger@t-systems.com
+#
+# SYNOPSIS
+#     job.TauBench
+#
+#@BL1@
+#@BL2@
+#@BL3@
+#@BL4@
+#@BL5@
+#@BL6@
+np=CF_TCPU
+if test x"@CONFIGDIR@" != x"@SCRDIR@"; then 
+    cp @CONFIGDIR@/TauBench @SCRDIR@
+fi
+cd @SCRDIR@
+@CONFIGDIR@/mpirun -np $np ./TauBench >& TauBench.p$np
+cp TauBench.p$np @CONFIGDIR@/RESULTS
+rm -f TauBench.p$np
