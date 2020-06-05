@@ -1,0 +1,4 @@
+module load daint-mc
+module swap PrgEnv-cray PrgEnv-intel
+./configure MPICC=`which cc`
+make
