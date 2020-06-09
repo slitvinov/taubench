@@ -1,3 +1,5 @@
+.POSIX:
+.PHONY: clean
 CC = cc
 CFLAGS = -g -Ofast
 LINK = $(CC)
@@ -10,8 +12,10 @@ smooth_fake.o\
 
 taubench: $M
 	$(LINK) $(LDFLAGS) -lm -o $@ $M
-
 .c.o:
 	$(CC) $(CFLAGS) $(CO_CFLAGS) $< -c
+
+clean:
+	rm -f $M taubench
 
 include dep.mk
