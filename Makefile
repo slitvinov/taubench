@@ -13,3 +13,5 @@ taubench: $M
 
 .c.o:
 	$(CC) $(CFLAGS) $(CO_CFLAGS) $< -c
+
+include dep.mk
