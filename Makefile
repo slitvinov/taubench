@@ -9,7 +9,7 @@ lim_fake.o\
 smooth_fake.o\
 
 TauBench: $M
-	$(LINK) $(LDFLAGS) -o $@ $M
+	$(LINK) $(LDFLAGS) -lm -o $@ $M
 
 .c.o:
 	$(CC) $(CFLAGS) $(CO_CFLAGS) $< -c
