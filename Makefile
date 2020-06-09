@@ -8,7 +8,7 @@ main_fake.o\
 lim_fake.o\
 smooth_fake.o\
 
-TauBench: $M
+taubench: $M
 	$(LINK) $(LDFLAGS) -lm -o $@ $M
 
 .c.o:
