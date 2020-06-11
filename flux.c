@@ -84,7 +84,7 @@ kernel_2_1(DualGrid * grid, WorkSpace * work, double dummy_4[][CO])
     double (*wfl)[3] = work->wfl;
     const int moving_grid = grid->moving;
     int (*hup)[2] = grid->hup;
-    double (*ping)[ST],(*pong)[ST];
+    double (*ping)[ST], (*pong)[ST];
     RangeList *cl;
     int nskips = grid->nallskips;
 
@@ -297,7 +297,7 @@ kernel_2_2(DualGrid * grid, double dummy_1[][PR], double dummy_3[][AD],
 {
     RangeList *cl;
     int (*hup)[2] = grid->hup;
-    double (*hop)[3] = grid->hop, (*xx)[3] = grid->xx;
+    double (*hop)[3] = grid->hop,(*xx)[3] = grid->xx;
     const double two3 = 2. / 3.;
     const double junk_1 = 1.0;
     const double junk_2 = 1.0;
@@ -503,7 +503,7 @@ kernel_2_4(DualGrid * grid, double dummy_1[][PR], double dummy_3[][AD],
            double dummy_2[][GR][3], double dummy_4[][CO])
 {
     int (*hup)[2] = grid->hup;
-    double (*hop)[3] = grid->hop, (*xx)[3] = grid->xx;
+    double (*hop)[3] = grid->hop,(*xx)[3] = grid->xx;
     RangeList *cl;
     const double rsigm = 1.0;
     const double junk_1 = 1.0;

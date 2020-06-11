@@ -17,7 +17,7 @@ kernel_1_0(DualGrid * grid, WorkSpace * work, double dummy_1[][PR],
     const int npnt = grid->nallpoints;
     double (*xx)[3] = grid->xx;
     double (*plim)[LIM] = work->plim;
-    double (*dumax)[LIM], (*dumin)[LIM], (*newlim)[LIM];
+    double (*dumax)[LIM],(*dumin)[LIM],(*newlim)[LIM];
     int (*hup)[2] = grid->hup;
     int pnt, skip;
     int k;

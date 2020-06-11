@@ -260,13 +260,19 @@ init(DualGrid * grid, WorkSpace * work, double dummy_1[][PR],
     for (pnt = 0; pnt < npoints; pnt++) {
         for (i = 0; i < 3; i++) {
             wfl[pnt][i] = (double) (i + 1);
-    }} for (pnt = 0; pnt < npoints; pnt++) {
+        }
+    }
+    for (pnt = 0; pnt < npoints; pnt++) {
         for (i = 0; i < LIM; i++) {
             plim[pnt][i] = (double) (i + 1);
-    }} for (pnt = 0; pnt < npoints; pnt++) {
+        }
+    }
+    for (pnt = 0; pnt < npoints; pnt++) {
         for (i = 0; i < 3; i++) {
             xx[pnt][i] = (double) (i + 1);
-    }} for (pnt = 0; pnt < npoints; pnt++) {
+        }
+    }
+    for (pnt = 0; pnt < npoints; pnt++) {
         pvolume[pnt] = 1.0;
     }
     for (pnt = 0; pnt < npoints; pnt++) {
@@ -275,11 +281,15 @@ init(DualGrid * grid, WorkSpace * work, double dummy_1[][PR],
     for (pnt = 0; pnt < npoints; pnt++) {
         for (i = 0; i < PR; i++) {
             dummy_1[pnt][i] = (double) (i + 1);
-    }} for (pnt = 0; pnt < npoints; pnt++) {
+        }
+    }
+    for (pnt = 0; pnt < npoints; pnt++) {
         for (i = 0; i < GR; i++) {
             for (j = 0; j < 3; j++) {
                 dummy_2[pnt][i][j] = (double) (j + 1);
-    }}} for (pnt = 0; pnt < npoints; pnt++) {
+            }
+        }
+    } for (pnt = 0; pnt < npoints; pnt++) {
         for (i = 0; i < AD; i++) {
             dummy_3[pnt][i] = 1.0;
         }
@@ -292,7 +302,9 @@ init(DualGrid * grid, WorkSpace * work, double dummy_1[][PR],
     for (skip = 0; skip < nskips; skip++) {
         for (i = 0; i < 3; i++) {
             hop[skip][i] = (double) (i + 1);
-    }} for (skip = 0; skip < nskips; skip++) {
+        }
+    }
+    for (skip = 0; skip < nskips; skip++) {
         hip[skip] = 1.0;
     }
 }
