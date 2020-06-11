@@ -10,11 +10,9 @@ main.o\
 lim.o\
 smooth.o\
 
-taubench: $M
-	$(LINK) $(LDFLAGS) -lm -o $@ $M
+taubench: $M;$(LINK) $(LDFLAGS) -lm -o $@ $M
 .c.o:
 	$(CC) $(CFLAGS) $< -c
-
 clean:
 	rm -f $M taubench
 
