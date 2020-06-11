@@ -4,44 +4,44 @@
 #include <math.h>
 
 #ifndef SQR
-# define SQR(x) ((x) * (x))
+#define SQR(x) ((x) * (x))
 #endif
 
 #ifndef MIN
-# define MIN(a, b) ((a) < (b) ? (a) : (b))
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
 #ifndef MAX
-# define MAX(a, b) ( (a) > (b) ? (a) : (b))
+#define MAX(a, b) ( (a) > (b) ? (a) : (b))
 #endif
 
 #ifndef MAX0
-# define MAX0(a) ((a) > 0 ? (a) : 0)
+#define MAX0(a) ((a) > 0 ? (a) : 0)
 #endif
 
 #ifndef MIN0
-# define MIN0(a) ((a) < 0 ? (a) : 0)
+#define MIN0(a) ((a) < 0 ? (a) : 0)
 #endif
 
 #ifndef ABS
-# define ABS(a) ((a) < 0 ? -1 * (a) : (a) )
+#define ABS(a) ((a) < 0 ? -1 * (a) : (a) )
 #endif
 
 #ifndef ISIGN
-# define ISIGN(a) ((a) < 0 ? -1  : 1 )
+#define ISIGN(a) ((a) < 0 ? -1  : 1 )
 #endif
 
 #ifndef POW
-# define POW(x, y) exp( (y) * log(x) )
+#define POW(x, y) exp( (y) * log(x) )
 #endif
 
 
 #ifndef POW_LIM
-# define POW_LIM(x, y) exp( (y) * log(MAX((x), 1e-30)) )
+#define POW_LIM(x, y) exp( (y) * log(MAX((x), 1e-30)) )
 #endif
 
 #ifndef M_PI
-# define M_PI 3.14159265358979323846
+#define M_PI 3.14159265358979323846
 #endif
 
 

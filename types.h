@@ -12,40 +12,37 @@
 #define LIM     5
 
 
-typedef struct RangleList_Struct
-{
+typedef struct RangleList_Struct {
 
-  int start, stop, type;
-  int vector_coloring;
- 
-  struct RangleList_Struct *succ;
+    int start, stop, type;
+    int vector_coloring;
+
+    struct RangleList_Struct *succ;
 } RangeList;
 
-typedef struct 
-{
-  double (*wfl)[3];
-  double (*plim)[LIM];
+typedef struct {
+    double (*wfl)[3];
+    double (*plim)[LIM];
 
-} WorkSpace; 
+} WorkSpace;
 
-typedef struct 
-{
+typedef struct {
 
-  int nallpoints;
-  double (*xx)[3];
-  double  *pvolume;
-  double  *wdist;
-  int nallskips;
-  int moving;
-  int level;
-  double ptl_k;
-  double ptl_ratio;
-  int    (*hup)[2];
-  int    (*fngb)[2];
-  double (*hop)[3];
-  double *hip;
-  
-  RangeList *fcl;
+    int nallpoints;
+    double (*xx)[3];
+    double *pvolume;
+    double *wdist;
+    int nallskips;
+    int moving;
+    int level;
+    double ptl_k;
+    double ptl_ratio;
+    int (*hup)[2];
+    int (*fngb)[2];
+    double (*hop)[3];
+    double *hip;
+
+    RangeList *fcl;
 
 } DualGrid;
 

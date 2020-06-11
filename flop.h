@@ -1,8 +1,8 @@
 
 #ifndef FLOP_H
 #define FLOP_H
- 
- 
+
+
 #ifdef ITASCALE
 /* Intel Itanium Scale */
 #define GZE 0.0006467742
@@ -15,7 +15,7 @@
 #define TZE 0.0080839163
 #define _SCALE_
 #endif
- 
+
 #ifdef SR8KSCALE
 /* Hitachi SR8000 Scale */
 #define GZE 0.0005044010
@@ -45,7 +45,6 @@
 #define TZE 0.0063305670
 #define _SCALE_
 #endif
- 
+
 
 #endif
- 
