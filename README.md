@@ -1,16 +1,16 @@
-# TauBench
+## TauBench
 
 This is the alpha release of a unstructured grid benchmark. TauBench
 is a pseudo benchmark. The respective kernels are derived from Tau --
-a Navier Stokes solver which has been developed at the german aerospace
-research DLR in germany. The original flow solver is a three-dimensional
-parallel hybrid multigrid solver, which uses a finite volume scheme in
-order to solve the Reynolds-averaged Navier-Stokes equations.
-The benchmark itself doesn't do anything useful in terms of producing
-meaningful results - rather it is meant to mimic the run-time
-performance of the Tau solver.
+a Navier Stokes solver which has been developed at the German
+aerospace research DLR in germany. The original flow solver is a
+three-dimensional parallel hybrid multigrid solver, which uses a
+finite volume scheme in order to solve the Reynolds-averaged
+Navier-Stokes equations.  The benchmark itself doesn't do anything
+useful in terms of producing meaningful results - rather it is meant
+to mimic the run-time performance of the Tau solver.
 
-# INSTALL
+## INSTALL
 ~~~
 make
 ~~~
