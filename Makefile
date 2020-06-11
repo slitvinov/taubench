@@ -13,7 +13,7 @@ smooth.o\
 taubench: $M
 	$(LINK) $(LDFLAGS) -lm -o $@ $M
 .c.o:
-	$(CC) $(CFLAGS) $(CO_CFLAGS) $< -c
+	$(CC) $(CFLAGS) $< -c
 
 clean:
 	rm -f $M taubench
