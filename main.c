@@ -52,7 +52,7 @@ main(int argc, char **argv)
     int prn = 0;
     static double sa1 = 0.0, sa2 = 0.0;
 
-    if (MPI_Init(&argc, &argv) == MPI_SUCCESS) {
+    if (MPI_Init(&argc, &argv) != MPI_SUCCESS) {
         fprintf(stderr, "taubench: MPI_Init failed\n");
         exit(1);
     }
@@ -377,7 +377,7 @@ test_malloc(int pnt)
 
     try = malloc(pnt);
     if (try == NULL) {
-        printf("out of memory.\n");
+        fprintf(stderr, "taubench: out of memory\n");
         exit(1);
     }
     return try;
