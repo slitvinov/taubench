@@ -52,7 +52,10 @@ main(int argc, char **argv)
     int prn = 0;
     static double sa1 = 0.0, sa2 = 0.0;
 
-    MPI_Init(&argc, &argv);
+    if (MPI_Init(&argc, &argv) == MPI_SUCCESS) {
+        fprintf(stderr, "taubench: MPI_Init failed\n");
+        exit(1);
+    }
     MPI_Comm_size(MPI_COMM_WORLD, &np);
     MPI_Comm_rank(MPI_COMM_WORLD, &id);
     if (argc > 1) {
