@@ -14,6 +14,10 @@ to mimic the run-time performance of the Tau solver.
 ~~~
 make
 ~~~
+or
+~~~
+make CC=mpicc
+~~~
 
 Tau supports both vector and cache colored grids, you might also need
 to adapt the compiler directives in nodep.h and expand.h.
