@@ -7,9 +7,9 @@
 #include <sys/resource.h>
 #include <sys/time.h>
 #include "types.h"
-#include "lim_fake.h"
-#include "flux_fake.h"
-#include "smooth_fake.h"
+#include "lim.h"
+#include "flux.h"
+#include "smooth.h"
 #include "util.h"
 #include "flop.h"
 double second();

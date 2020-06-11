@@ -6,8 +6,8 @@
 #include <stdio.h>
 #include "types.h"
 #include "util.h"
-#include "main_fake.h"
-#include "lim_fake.h"
+#include "main.h"
+#include "lim.h"
 #include "flop.h"
 static void kernel_1_1(DualGrid * grid, double dummy_1[][PR],
                        double dumin[][LIM], double dumax[][LIM],

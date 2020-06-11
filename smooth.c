@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <malloc.h>
 #include "types.h"
-#include "main_fake.h"
-#include "smooth_fake.h"
+#include "main.h"
+#include "smooth.h"
 #include "flop.h"
 #include "util.h"
 void

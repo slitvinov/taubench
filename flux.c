@@ -4,8 +4,8 @@
 #include "malloc.h"
 #include "util.h"
 #include "types.h"
-#include "main_fake.h"
-#include "flux_fake.h"
+#include "main.h"
+#include "flux.h"
 #include "flop.h"
 static void kernel_2_1(DualGrid * grid, WorkSpace * work,
                        double dummy_4[][CO]);

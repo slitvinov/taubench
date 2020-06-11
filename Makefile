@@ -5,10 +5,10 @@ CFLAGS = -g -Ofast
 LINK = $(CC)
 
 M = \
-flux_fake.o\
-main_fake.o\
-lim_fake.o\
-smooth_fake.o\
+flux.o\
+main.o\
+lim.o\
+smooth.o\
 
 taubench: $M
 	$(LINK) $(LDFLAGS) -lm -o $@ $M
