@@ -1,8 +1,3 @@
-#ifndef UTIL_H
-#define UTIL_H
-
-#include <math.h>
-
 #ifndef SQR
 #define SQR(x) ((x) * (x))
 #endif
@@ -74,6 +69,3 @@
 
 #define BLA_SEVEN(dummy_1, pnt) \
          (sqrt(junk_5 * dummy_1[pnt][IP] / dummy_1[pnt][IRHO]))
-
-
-#endif

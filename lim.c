@@ -1,9 +1,5 @@
-
-#include <math.h>
-#include <float.h>
-#include <string.h>
-#include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "types.h"
 #include "util.h"
 #include "main.h"

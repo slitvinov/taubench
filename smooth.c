@@ -1,8 +1,6 @@
-
 #include <math.h>
-#include <stddef.h>
 #include <stdio.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "types.h"
 #include "main.h"
 #include "smooth.h"

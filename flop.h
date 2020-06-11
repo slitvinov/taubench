@@ -1,8 +1,3 @@
-
-#ifndef FLOP_H
-#define FLOP_H
-
-
 #ifdef ITASCALE
 /* Intel Itanium Scale */
 #define GZE 0.0006467742
@@ -44,7 +39,4 @@
 #define SAL 0.0013693298
 #define TZE 0.0063305670
 #define _SCALE_
-#endif
-
-
 #endif

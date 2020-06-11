@@ -1,8 +1,3 @@
-#ifndef FAKE_TYPES_H
-#define FAKE_TYPES_H
-
-
-
 #define CO      6
 #define ZAP     6
 #define PR      6
@@ -78,8 +73,3 @@ typedef struct {
 #define   INUE IRHONUE
 #define   IPEX ISSW
 #define   ILIM ISSW
-
-
-
-
-#endif
