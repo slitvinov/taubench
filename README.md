@@ -15,13 +15,16 @@ to mimic the run-time performance of the Tau solver.
     make
 
 
-To change a compiler
+To change the compiler
 
     make MPICC=mpicc
 
 <h2>Run</h2>
 Tau supports both vector and cache colored grids, you might also need
-to adapt the compiler directives in [nodep.h](./nodep.h) and [expand.h](./expand.h).m
+to adapt the compiler directives in
+<a href="./nodep.h">nodep.h</a>
+and
+<a href="./expand.h">expand.h</a>
 
 The benchmark itself can be used with two flags, the gridsize per
 process and the number of pseudo steps:
