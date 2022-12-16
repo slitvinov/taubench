@@ -1,35 +1,33 @@
 <h2>TauBench</h2>
 
-This is the alpha release of a unstructured grid benchmark. TauBench
-is a pseudo benchmark. The respective kernels are derived from Tau
-(a Navier Stokes solver which has been developed at the German
-aerospace research DLR in Germany). The original flow solver is a
-three-dimensional parallel hybrid multigrid solver, which uses a
-finite volume scheme in order to solve the Reynolds-averaged
-Navier-Stokes equations.  The benchmark itself doesn't do anything
-useful in terms of producing meaningful results - rather it is meant
-to mimic the run-time performance of the Tau solver.
+This is an unstructured grid benchmark. The benchmark mimics the
+run-time performance of the Tau solver (a Navier Stokes solver which
+has been developed at the DLR in Germany). Tau is a three-dimensional
+parallel hybrid multigrid solver, which uses a finite volume scheme in
+order to solve the Reynolds-averaged Navier-Stokes equations.
 
 <h2>Install</h2>
-
-    make
+<pre>
+$ make
+</pre>
 
 
 To change the compiler
 
-    make MPICC=mpicc
+<pre>
+$ make MPICC=mpicc.mpich
+</pre>
 
 <h2>Run</h2>
 Tau supports both vector and cache colored grids, you might also need
 to adapt the compiler directives in
 <a href="./nodep.h">nodep.h</a>
 and
-<a href="./expand.h">expand.h</a>
-
+<a href="./expand.h">expand.h</a>.
 The benchmark itself can be used with two flags, the gridsize per
 process and the number of pseudo steps:
 
-~~~
+<pre>
 $ mpirun -np 2 ./taubench -n 100000 -s 10
 This is TauBench.
 Evaluating kernels - please be patient.
@@ -52,4 +50,4 @@ procs      :          2
 comp       :      6.351 secs
 comm       :      0.352 secs
 comm ratio :      0.055
-~~~
+</pre>
