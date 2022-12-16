@@ -1,7 +1,7 @@
+#include "types.h"
 #include "lim.h"
 #include "flop.h"
 #include "main.h"
-#include "types.h"
 #include "util.h"
 #include <stdio.h>
 #include <stdlib.h>

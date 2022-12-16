@@ -1,7 +1,7 @@
+#include "types.h"
 #include "smooth.h"
 #include "flop.h"
 #include "main.h"
-#include "types.h"
 #include "util.h"
 #include <math.h>
 #include <stdio.h>

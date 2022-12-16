@@ -1,8 +1,8 @@
+#include "types.h"
 #include "flux.h"
 #include "flop.h"
 #include "main.h"
 #include "malloc.h"
-#include "types.h"
 #include "util.h"
 #include <math.h>
 static void kernel_2_1(DualGrid *grid, WorkSpace *work, double dummy_4[][CO]);

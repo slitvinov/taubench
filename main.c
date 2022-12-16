@@ -1,8 +1,8 @@
+#include "types.h"
 #include "flop.h"
 #include "flux.h"
 #include "lim.h"
 #include "smooth.h"
-#include "types.h"
 #include "util.h"
 #include <math.h>
 #include <mpi.h>
