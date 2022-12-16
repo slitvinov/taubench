@@ -4,6 +4,7 @@
 #include "lim.h"
 #include "smooth.h"
 #include "util.h"
+#include "main.h"
 #include <math.h>
 #include <mpi.h>
 #include <stdio.h>
@@ -11,8 +12,6 @@
 #include <string.h>
 #include <sys/resource.h>
 #include <sys/time.h>
-double second();
-void *test_malloc(int pnt);
 static void usage(int id);
 static void shuffle(int size, int np, int id, double *in, double *out);
 static void free_struc(DualGrid *grid, WorkSpace *work);
@@ -72,19 +71,17 @@ int main(int argc, char **argv) {
   nskips = (int)npoints * FW;
 
   ncs = (int)nskips / CW;
-  grid = (DualGrid *)test_malloc(sizeof(DualGrid));
-  ;
-  work = (WorkSpace *)test_malloc(sizeof(WorkSpace));
-  ;
-  dummy_1 = (double(*)[PR])test_malloc(npoints * sizeof(double[PR]));
-  dummy_2 = (double(*)[GR][3])test_malloc(npoints * sizeof(double[GR][3]));
-  dummy_3 = (double(*)[AD])test_malloc(npoints * sizeof(double[AD]));
-  dummy_4 = (double(*)[CO])test_malloc(npoints * sizeof(double[CO]));
+  grid = test_malloc(sizeof(DualGrid));
+  work = test_malloc(sizeof(WorkSpace));
+  dummy_1 = test_malloc(npoints * sizeof(double[PR]));
+  dummy_2 = test_malloc(npoints * sizeof(double[GR][3]));
+  dummy_3 = test_malloc(npoints * sizeof(double[AD]));
+  dummy_4 = test_malloc(npoints * sizeof(double[CO]));
   alloc(grid, work, dummy_1, dummy_2, dummy_3, dummy_4, npoints, nskips, ncs,
         id);
   size = (int)pow((double)npoints, 0.66666666) * 444.0 / RC;
-  out = (double *)test_malloc(size * sizeof(double));
-  in = (double *)test_malloc(size * sizeof(double));
+  out = test_malloc(size * sizeof(double));
+  in = test_malloc(size * sizeof(double));
   if (id == 0) {
     printf("This is TauBench.\n");
     printf("Evaluating kernels - please be patient.\n");
@@ -172,18 +169,18 @@ static void alloc(DualGrid *grid, WorkSpace *work, double dummy_1[][PR],
   int kl = 0;
   RangeList *init = NULL, **succ = NULL;
 
-  work->wfl = (double(*)[3])test_malloc(npoints * sizeof(double[3]));
-  work->plim = (double(*)[LIM])test_malloc(npoints * sizeof(double[LIM]));
-  grid->xx = (double(*)[3])test_malloc(npoints * sizeof(double[3]));
-  grid->pvolume = (double *)test_malloc(npoints * sizeof(double));
-  grid->wdist = (double *)test_malloc(npoints * sizeof(double));
-  grid->hup = (int(*)[2])test_malloc(nskips * sizeof(int[2]));
-  grid->hop = (double(*)[3])test_malloc(nskips * sizeof(double[3]));
-  grid->hip = (double *)test_malloc(nskips * sizeof(double));
+  work->wfl = test_malloc(npoints * sizeof(double[3]));
+  work->plim = test_malloc(npoints * sizeof(double[LIM]));
+  grid->xx = test_malloc(npoints * sizeof(double[3]));
+  grid->pvolume = test_malloc(npoints * sizeof(double));
+  grid->wdist = test_malloc(npoints * sizeof(double));
+  grid->hup = test_malloc(nskips * sizeof(int[2]));
+  grid->hop = test_malloc(nskips * sizeof(double[3]));
+  grid->hip = test_malloc(nskips * sizeof(double));
   grid->fcl = NULL;
   succ = &grid->fcl;
   for (cl = 0; cl <= ncs; cl++) {
-    init = (RangeList *)test_malloc(sizeof(RangeList));
+    init = test_malloc(sizeof(RangeList));
     init->start = kl;
     kl += (int)CW;
     kl = MIN(nskips, kl);
@@ -356,20 +353,16 @@ static void free_struc(DualGrid *grid, WorkSpace *work) {
 }
 
 void *test_malloc(int pnt) {
-  void *try
-    = NULL;
-
-  try
-    = malloc(pnt);
+  void *try = NULL;
+  try = malloc(pnt);
   if (try == NULL) {
     fprintf(stderr, "taubench: out of memory\n");
     exit(1);
   }
-  return try
-    ;
+  return try;
 }
 
-double second() {
+double second(void) {
   double tarray[3];
   double t1;
   struct rusage RU;
