@@ -21,7 +21,10 @@ Change compiler
 
 <h2>Run</h2>
 Tau supports both vector and cache colored grids, you might also need
-to adapt the compiler directives in nodep.h and expand.h.
+to adapt the compiler directives in
+[nodep.h](nodep.h)
+and
+[expand.h](expand.h).
 
 The benchmark itself can be used with two flags, the gridsize per
 process and the number of pseudo steps:
