@@ -2,13 +2,11 @@
 #error 'EXPAND_COUNT' is not defined
 #endif
 
-
 #ifdef SX3
-#pragma vdir expand=EXPAND_COUNT
+#pragma vdir expand = EXPAND_COUNT
 #endif
 
 #ifdef SX4
-
 
 #if EXPAND_COUNT == 0
 #define _UNROLL_ 0
@@ -47,7 +45,7 @@
 #define _UNROLL_ EXPAND_COUNT
 #endif
 
-#pragma vdir expand=_UNROLL_
+#pragma vdir expand = _UNROLL_
 #undef _UNROLL_
 #endif
 
@@ -101,7 +99,6 @@
 /*soption unroll(16) */
 #endif
 #endif
-
 
 #ifdef SUN_SPARC
 
