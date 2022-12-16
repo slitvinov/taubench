@@ -1,16 +1,14 @@
 <h2>TauBench</h2>
-
 This is an unstructured grid benchmark. The benchmark mimics the
 run-time performance of the Tau solver (a Navier Stokes solver which
 has been developed at the DLR in Germany). Tau is a three-dimensional
-parallel hybrid multigrid solver, which uses a finite volume scheme in
-order to solve the Reynolds-averaged Navier-Stokes equations.
+parallel hybrid multigrid solver, which solves the Reynolds-averaged
+Navier-Stokes equations by finite volume scheme.
 
 <h2>Install</h2>
 <pre>
 $ make
 </pre>
-
 
 To change the compiler
 
