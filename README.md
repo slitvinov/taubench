@@ -11,14 +11,13 @@ useful in terms of producing meaningful results - rather it is meant
 to mimic the run-time performance of the Tau solver.
 
 <h2>Install</h2>
-~~~
-make
-~~~
+
+    make
+
 
 Change compiler
-~~~
-make MPICC=mpicc
-~~~
+
+    make MPICC=mpicc
 
 <h2>Run</h2>
 Tau supports both vector and cache colored grids, you might also need
