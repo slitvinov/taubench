@@ -6,6 +6,7 @@
 MPICC = mpicc
 LINK = $(MPICC)
 CFLAGS = -g -O2
+PREFIX = /usr
 
 M = \
 flux.o\
@@ -17,6 +18,10 @@ taubench: $M
 	$(LINK) $M $(LDFLAGS) -lm -o $@
 .c.o:
 	$(MPICC) $(CFLAGS) $< -c
+
+install: taubench
+	mkdir -p '$(PREFIX)/bin'
+	cp -- taubench '$(PREFIX)/bin'
 clean:
 	rm -f $M taubench
 
