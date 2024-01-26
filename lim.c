@@ -41,10 +41,10 @@ void kernel_1_0(DualGrid *grid, WorkSpace *work, double dummy_1[][PR],
   if (id == 0) {
     t4 = second();
   }
-#include "nodep.h"
+#include "nodep.inc"
   for (pnt = 0; pnt < npnt; pnt++) {
 #define EXPAND_COUNT LIM
-#include "expand.h"
+#include "expand.inc"
     for (k = 0; k < LIM; k++) {
       newlim[pnt][k] = 2;
     }
@@ -55,7 +55,7 @@ void kernel_1_0(DualGrid *grid, WorkSpace *work, double dummy_1[][PR],
     const int type = cl->type;
 
     if (type != TWO_SKIP) {
-#include "nodep.h"
+#include "nodep.inc"
       for (skip = start; skip < stop; skip++) {
         const int p0 = hup[skip][0], p1 = hup[skip][1];
         const double dx = 0.5 * (xx[p1][0] - xx[p0][0]);
@@ -63,7 +63,7 @@ void kernel_1_0(DualGrid *grid, WorkSpace *work, double dummy_1[][PR],
         const double dz = 0.5 * (xx[p1][2] - xx[p0][2]);
 
 #define EXPAND_COUNT LIM
-#include "expand.h"
+#include "expand.inc"
         for (k = 0; k < LIM; k++) {
           double r0, r1;
           const double newlim0 = newlim[p0][k], newlim1 = newlim[p1][k];
@@ -91,10 +91,10 @@ void kernel_1_0(DualGrid *grid, WorkSpace *work, double dummy_1[][PR],
       }
     }
   }
-#include "nodep.h"
+#include "nodep.inc"
   for (pnt = 0; pnt < npnt; pnt++) {
 #define EXPAND_COUNT LIM
-#include "expand.h"
+#include "expand.inc"
     for (k = 0; k < LIM; k++) {
       const double r = newlim[pnt][k], rr = r * r;
       const double tmplim = (rr + 2.0 * r) / (rr + r + 2.0);
@@ -136,10 +136,10 @@ static void kernel_1_1(DualGrid *grid, double dummy_1[][PR],
   int pnt, skip, k;
   RangeList *cl;
 
-#include "nodep.h"
+#include "nodep.inc"
   for (pnt = 0; pnt < npnt; pnt++) {
 #define EXPAND_COUNT LIM
-#include "expand.h"
+#include "expand.inc"
     for (k = 0; k < LIM; k++) {
       dumax[pnt][k] = eps;
       dumin[pnt][k] = -eps;
@@ -151,12 +151,12 @@ static void kernel_1_1(DualGrid *grid, double dummy_1[][PR],
     const int type = cl->type;
 
     if (type != TWO_SKIP) {
-#include "nodep.h"
+#include "nodep.inc"
       for (skip = start; skip < stop; skip++) {
         const int p0 = hup[skip][0], p1 = hup[skip][1];
 
 #define EXPAND_COUNT LIM
-#include "expand.h"
+#include "expand.inc"
         for (k = 0; k < LIM; k++) {
           const double du = dummy_1[p1][k] - dummy_1[p0][k];
           const double dum = -du;

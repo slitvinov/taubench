@@ -40,7 +40,7 @@ void kernel_3_0(DualGrid *grid, WorkSpace *work, double dummy_4[][CO],
     for (cl = grid->fcl; cl != NULL; cl = cl->succ) {
       const int start = cl->start, stop = cl->stop;
 
-#include "nodep.h"
+#include "nodep.inc"
       for (skip = start; skip < stop; skip++) {
         const int p0 = hup[skip][0], p1 = hup[skip][1];
         const double anx = hop[skip][0], any = hop[skip][1], anz = hop[skip][2];

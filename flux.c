@@ -92,7 +92,7 @@ static void kernel_2_1(DualGrid *grid, WorkSpace *work, double dummy_4[][CO]) {
 
     for (skip = start; skip < stop; skip++) {
 #define EXPAND_COUNT ST
-#include "expand.h"
+#include "expand.inc"
       for (j = 0; j < ST; j++) {
         ping[skip][j] = 1.0;
         pong[skip][j] = 1.0;
@@ -104,7 +104,7 @@ static void kernel_2_1(DualGrid *grid, WorkSpace *work, double dummy_4[][CO]) {
     const int stop = cl->stop;
     int skip;
 
-#include "nodep.h"
+#include "nodep.inc"
     for (skip = start; skip < stop; skip++) {
       int k;
       const int pl = hup[skip][0], pr = hup[skip][1];
@@ -152,7 +152,7 @@ static void kernel_2_1(DualGrid *grid, WorkSpace *work, double dummy_4[][CO]) {
       var_r[IRHOVZ] = vz_r - vn_r * nz;
       var_r[IRHOE] = pong[skip][IH];
 #define EXPAND_COUNT ZAP - 5
-#include "expand.h"
+#include "expand.inc"
       for (k = 5; k < ZAP; k++) {
         var_l[k] = ping[skip][k];
         var_r[k] = pong[skip][k];
@@ -258,7 +258,7 @@ static void kernel_2_1(DualGrid *grid, WorkSpace *work, double dummy_4[][CO]) {
       rhovn_l *= area;
       rhovn_r *= area;
 #define EXPAND_COUNT ZAP
-#include "expand.h"
+#include "expand.inc"
       for (k = 0; k < ZAP; k++)
         zap[k] = rhovn_l * var_l[k] + rhovn_r * var_r[k];
       rhovvn += p_12;
@@ -267,7 +267,7 @@ static void kernel_2_1(DualGrid *grid, WorkSpace *work, double dummy_4[][CO]) {
       zap[IRHOVZ] += rhovvn * anz;
       zap[IRHOE] += gs * p_12 * area;
 #define EXPAND_COUNT ZAP
-#include "expand.h"
+#include "expand.inc"
       for (k = 0; k < ZAP; k++) {
         dummy_4[pl][k] += zap[k];
         dummy_4[pr][k] -= zap[k];
@@ -295,7 +295,7 @@ static void kernel_2_2(DualGrid *grid, double dummy_1[][PR],
     int skip;
 
     if (type != TWO_SKIP) {
-#include "nodep.h"
+#include "nodep.inc"
       for (skip = start; skip < stop; skip++) {
         double drho_dx, drho_dy, drho_dz, dvx_dx, dvx_dy, dvx_dz, dvy_dx,
             dvy_dy, dvy_dz, dvz_dx, dvz_dy, dvz_dz, dp_dx, dp_dy, dp_dz, dt_dx,
@@ -422,7 +422,7 @@ static void kernel_2_3(DualGrid *grid, double dummy_1[][PR],
   const double junk_1 = 1.0;
   const double junk_3 = 1.0;
 
-#include "nodep.h"
+#include "nodep.inc"
   for (pnt = 0; pnt < npnt; pnt++) {
     double diffsource = 0;
     double production = 0;
@@ -489,7 +489,7 @@ kernel_2_4(DualGrid *grid, double dummy_1[][PR], double dummy_3[][AD],
     int skip;
 
     if (type != TWO_SKIP) {
-#include "nodep.h"
+#include "nodep.inc"
       for (skip = start; skip < stop; skip++) {
         double dnue_dx, dnue_dy, dnue_dz, f, fold, fnew, dx, dy, dz, rld, zap;
         const int p0 = hup[skip][0], p1 = hup[skip][1];
