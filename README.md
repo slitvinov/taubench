@@ -15,14 +15,14 @@ mpicc -g -O2 smooth.c -c
 mpicc flux.o main.o lim.o smooth.o   -lm -o taubench
 </pre>
 
-To change the compiler
+To change the compiler and compiler flags
 
 <pre>
-$ make MPICC=mpicc.mpich
-mpicc.mpich -g -O2 flux.c -c
-mpicc.mpich -g -O2 main.c -c
-mpicc.mpich -g -O2 lim.c -c
-mpicc.mpich -g -O2 smooth.c -c
+$ make 'MPICC = mpicc.mpich' 'CFLAGS = -Ofast -Wall'
+mpicc.mpich -Ofast -Wall flux.c -c
+mpicc.mpich -Ofast -Wall main.c -c
+mpicc.mpich -Ofast -Wall lim.c -c
+mpicc.mpich -Ofast -Wall smooth.c -c
 mpicc.mpich flux.o main.o lim.o smooth.o   -lm -o taubench
 </pre>
 

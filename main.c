@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
   static double sa1 = 0.0, sa2 = 0.0;
 
   if (MPI_Init(&argc, &argv) != MPI_SUCCESS) {
-    fprintf(stderr, "taubench: MPI_Init failed\n");
+    fprintf(stderr, "taubench: error: MPI_Init failed\n");
     exit(1);
   }
   MPI_Comm_size(MPI_COMM_WORLD, &np);
